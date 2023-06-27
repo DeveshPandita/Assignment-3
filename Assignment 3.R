@@ -1,4 +1,4 @@
-                                          ## Assignment 3 ##
+                                                                ## Assignment 3 ##
 
 
 
@@ -18,39 +18,26 @@ ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, color = Species)) +
 
 
 
+
 #<b>#
 
+library(tidyverse)
 df<-txhousing
 df <- df[complete.cases(df),]
-library(tidyverse)
-
-ggplot(txhousing, aes(x=date, y=sales, group=city)) +
-  geom_line() 
-
 txhousing$month <- factor(txhousing$month, labels=c("Jan", "Feb", "Mar",
                                                     "Apr", "May", "Jun",
                                                     "Jul", "Aug", "Sep",
                                                     "Oct", "Nov", "Dec"))
-
 # aggregate data by city and month
 by_month <- group_by(txhousing, city, month) %>% 
   summarise(sales=mean(sales), volume=mean(volume),
             median=mean(median), listings=mean(listings),
             inventory=mean(inventory))
 ggplot(by_month, aes(x=month, y=sales, group=city)) + 
-  geom_line(alpha=.5) +
   geom_line(data=filter(by_month)) 
-
-
 # Sales by City
 ggplot(txhousing, aes(x=date, y=sales, group=city)) +
   geom_boxplot()
-
-
-
-
-
-
 
 
 
