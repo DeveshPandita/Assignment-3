@@ -24,10 +24,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, color = Species)) +
 library(tidyverse)
 df<-txhousing
 df <- df[complete.cases(df),]
-txhousing$month <- factor(txhousing$month, labels=c("Jan", "Feb", "Mar",
-                                                    "Apr", "May", "Jun",
-                                                    "Jul", "Aug", "Sep",
-                                                    "Oct", "Nov", "Dec"))
+txhousing$month <- factor(txhousing$month, labels=c("Jan", "Feb", "Mar","Apr", "May", "Jun","Jul", "Aug", "Sep","Oct", "Nov", "Dec"))
 # aggregate data by city and month
 by_month <- group_by(txhousing, city, month) %>% 
   summarise(sales=mean(sales), volume=mean(volume),
